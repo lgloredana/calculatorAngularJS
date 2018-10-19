@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-12">
 <!--                operation and number selector-->
-                <select id="operations" ng-model="calc.selectedOp" ng-change="changeOp()">
+                <select id="operations" ng-model="calc.selectedOp">
                     <option ng-repeat="op in calc.operations" ng-value="op">{{op.name}}</option>
                 </select>
                 <input type="number" placeholder="enter a number" ng-model="calc.number"/>

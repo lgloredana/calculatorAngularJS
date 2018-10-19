@@ -7,9 +7,6 @@ angular.module('calcApp').controller('calculatorController',['$scope', 'operatio
     calc.selectedOp = {};
     calc.selectedCalcList = [];// [{name:"add",nr:3, opValue:"+"},{name:"multiply", nr:2, value:"*"}, {name:'apply', nr:3, value:""}];
     
-    $scope.changeOp = function(){
-        console.log("op changed");
-    }
     $scope.add = function(){
         console.log("add click");
         calc.selectedCalcList.push({
