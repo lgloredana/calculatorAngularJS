@@ -18,13 +18,33 @@ angular.module('calcApp').controller('calculatorController',['$scope', 'operatio
         
     $scope.calculate = function(){
         console.log("calculate click");
-        let calcLength = calc.selectedCalcList.length-1;
-        calc.result = calc.selectedCalcList[calcLength].nr;
+        let calcLength = selecectedCalcs.length-1;
+        let result = selecectedCalcs[calcLength].nr;
         for(let i=0; i<calcLength; i++){
-            let exp = calc.result + "" + calc.selectedCalcList[i].value + calc.selectedCalcList[i].nr;
-            calc.result = eval(exp);
+          result = applyOp(result)(selecectedCalcs[i]);
         }
     }    
+
+    applyOp = function(result){
+        return function(obj){
+          switch(obj.value){
+            case "*": 
+                result = result * obj.nr; 
+                break;
+            case "/": 
+                result = result / obj.nr; 
+                break;
+            case "-": 
+                result = result - obj.nr; 
+                break;
+            case "+": 
+                result = result + obj.nr; 
+                break;
+          }
+          return result;
+        }
+      }
+    
         
     $scope.reset = function(){
         console.log("reset click");
