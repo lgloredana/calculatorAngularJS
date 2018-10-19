@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="calcApp">
+<head>
+    <title>Calculator</title>
+    <!-- Latest compiled and minified CSS -->
+    
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script>
+    
+    
+    <script src="operations.js"></script>
+    <script src="app.js"></script>
+    
+</head>
+<body>
+    <div class="container" ng-controller="calculatorController as calc">
+        <div class="row">
+            <div class="col-12">
+<!--                operation and number selector-->
+                <select id="operations" ng-model="calc.selectedOp" ng-change="changeOp()">
+                    <option ng-repeat="op in calc.operations" ng-value="op">{{op.name}}</option>
+                </select>
+                <input type="number" placeholder="enter a number" ng-model="calc.number"/>
+                <button type="button" class="btn btn-primary" ng-click="add()">Add step</button>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="coll-12 container" style="background-color: beige ; height: 150px">
+                <ol>
+                    <li ng-repeat="op in calc.selectedCalcList">
+                        <div >  
+                                {{op.name}} {{op.nr}}
+                        </div>  
+                    </li>
+                </ol>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="coll-12">
+<!--                calculate and reset buttons-->
+                <button type="button" class="btn btn-warning" ng-click="calculate()">Calculate</button>
+                <button type="button" class="btn btn-success" ng-click="reset()">Reset</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="coll-12">
+<!--                show result-->
+                <h1>
+                    <span class="label label-info" >{{calc.result}}</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
