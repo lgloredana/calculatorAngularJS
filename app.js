@@ -8,46 +8,42 @@ angular.module('calcApp').controller('calculatorController',['$scope', 'operatio
     calc.selectedCalcList = [];// [{name:"add",nr:3, opValue:"+"},{name:"multiply", nr:2, value:"*"}, {name:'apply', nr:3, value:""}];
     
     $scope.add = function(){
-        console.log("add click");
         calc.selectedCalcList.push({
             name: calc.selectedOp.name,
             value: calc.selectedOp.value,
             nr: calc.number
-        })
+        });
     }
         
     $scope.calculate = function(){
-        console.log("calculate click");
-        let calcLength = calc.selectedCalcList.length-1;
-        calc.result = calc.selectedCalcList[calcLength].nr;
-        for(let i=0; i<calcLength; i++){
-            calc.result = applyOp(calc.result)(calc.selectedCalcList[i]);
-        }
-    }    
+        let len = calc.selectedCalcList.length-1;
+        let firstElem = calc.selectedCalcList[len].nr;
+        let result = parseInt(firstElem);
+        for(let i=0; i<len; i++){
+            let item = calc.selectedCalcList[i];
+            switch(item.value){
+                case "*": 
+                    result *= parseInt(item.nr); 
+                    break;
+                case "/": 
+                    result /= parseInt(item.nr); 
+                    break;
+                case "-": 
+                    result -= parseInt(item.nr); 
+                    break;
+                case "+": 
+                    result += parseInt(item.nr); 
+                    break;
+                default:
+                    console.log('unknown operation');
+            };  
+        } 
 
-    applyOp = function(result){
-        return function(obj){
-          switch(obj.value){
-            case "*": 
-                result = result * obj.nr; 
-                break;
-            case "/": 
-                result = result / obj.nr; 
-                break;
-            case "-": 
-                result = result - obj.nr; 
-                break;
-            case "+": 
-                result = result + obj.nr; 
-                break;
-          }
-          return result;
-        }
-      }
-    
+        calc.result = result;
+    };    
+
         
     $scope.reset = function(){
-        console.log("reset click");
         calc.number = 0;
         calc.result = 0;
         calc.selectedCalcList = [];

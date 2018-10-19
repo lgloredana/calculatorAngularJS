@@ -43,7 +43,7 @@ describe('Calculator Controller', function() {
                 {name:"multiply", value:"*", nr:"3"},
                 {name:"", value:"", nr:"3"},
             ]
-            $scope.calculate();
+            var a = $scope.calculate();
             expect(controller.result).toEqual(15);
         });
     });
@@ -69,7 +69,7 @@ describe('Calculator Controller', function() {
                 {name:"", value:"", nr:"1"},
             ]
             $scope.calculate();
-            expect(controller.result).toEqual("1");
+            expect(controller.result).toEqual(1);
         });
     });
 });
