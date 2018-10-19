@@ -18,10 +18,10 @@ angular.module('calcApp').controller('calculatorController',['$scope', 'operatio
         
     $scope.calculate = function(){
         console.log("calculate click");
-        let calcLength = selecectedCalcs.length-1;
-        let result = selecectedCalcs[calcLength].nr;
+        let calcLength = calc.selectedCalcList.length-1;
+        calc.result = calc.selectedCalcList[calcLength].nr;
         for(let i=0; i<calcLength; i++){
-          result = applyOp(result)(selecectedCalcs[i]);
+            calc.result = applyOp(calc.result)(calc.selectedCalcList[i]);
         }
     }    
 
